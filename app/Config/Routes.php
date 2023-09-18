@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\UserController;
 use CodeIgniter\Router\RouteCollection;
 use App\Controllers\Home;
 
@@ -8,8 +9,7 @@ use App\Controllers\Home;
  */
 $routes->get('/', 'Home::index');
 
-// jika mengakses /profile arahkan fungsi yg ada pada controller home
-// $routes->get('/profile/(:any)/(:any)/(:any)' , 'Home::profile/$1/$2/$3');
-
-// //perlu import
-$routes->get(from: '/profile/(:any)/(:any)/(:any)', to: [Home::class, 'profile']);
+$routes->get('profile', 'Home::profile');
+$routes->get('/user/profile', [UserController::class, 'profile']);
+$routes->get('/user/create', [UserController::class, 'create']);
+$routes->post('/user/store', [UserController::class, 'store']);
