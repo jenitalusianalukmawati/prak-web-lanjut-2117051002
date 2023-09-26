@@ -44,7 +44,6 @@ body{
     text-align: center;
 }
 .text h2{
-    text-transform: uppercase;
     font-weight: 900;
     font-size: 20px;
     margin: 0 0 20px;
@@ -65,6 +64,7 @@ body{
     padding: 0 5px;
 }
 
+/* form */
 body{
     min-height: 100vh;
     display: flex;
