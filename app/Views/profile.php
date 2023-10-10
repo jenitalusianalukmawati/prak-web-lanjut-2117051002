@@ -1,38 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'>
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="<?=base_url("assets/css/style.css")?>">
+<?= $this->extend('layouts/app') ?>
 
-</head>
-<body>
-    <div class="profile-area">
-        <div class="container">
-            <div class="row">
-                <div class="main">
-                    <div class="card">
-                        <div class="img1"><img src="<?=base_url("assets/img/bg.jpg")?>"></div>
-                        <div class="img2"><img src="<?=base_url("assets/img/jen.png")?>"></div>
-                        <div class="text">
-                            <h2><?=$nama?></h2>
-                            <p><?=$id_kelas?></p>
-                            <p><?=$npm?></p>
-                        </div>
-                        <div class="sosmed">
-                            <a href="https://twitter.com"><i class="fa fa-twitter"></i></a>
-                            <a href="https://instagram.com"><i class="fa fa-instagram"></i></a>
-                            <a href="https://linkedin.com"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
+<?= $this->section('content') ?>
+<section class="vh-100" style="background-color: #94A684">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: 0.5rem">
+          <div class="row g-0">
+            <div
+              class="col-md-4 gradient-custom text-center text-white"
+              style="
+                border-top-left-radius: 0.5rem;
+                border-bottom-left-radius: 0.5rem;
+              "
+            ><br><br>
+            <img src="<?= $user['foto'] ?? '<default-foto>' ?>" class="img-fluid my-5" style="width: 120px; border-radius: 100px;"/>
             </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h4>Profile</h4>
+                <hr class="mt-0 mb-4" />
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Nama</h6>
+                    <p class="text-muted"><?= $user['nama'] ?></p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>NPM</h6>
+                    <p class="text-muted"><?= $user['npm'] ?></p>
+                  </div>
+                </div>
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Kelas</h6>
+                    <p class="text-muted"><?= $user['nama_kelas'] ?></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
-</html>
+  </div>
+</section>
+<?= $this->endSection() ?>

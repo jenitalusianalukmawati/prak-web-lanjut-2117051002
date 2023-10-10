@@ -1,41 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="<?=base_url("assets/css/style.css")?>">
-</head>
-<body>
-    <section class="wrapper">
-        <div class="form">
-            <header>FORM</header>
-            <form action="<?= base_url('/user/store') ?>" method="POST">
-                <input type="text" name="nama" placeholder="Nama" class="form-control <?= ($validation->hasError('nama')) ?
-                'is-invalid' : ''; ?>" id="nama" autofocus>
-                <div class="invalid-feedback">                    <?= $validation->getError('nama') ?>
+<?= $this->extend('layouts/app') ?>
+<?= $this->section('content') ?>
+<div class="bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Create User</h3></div>
+                    <div class="card-body">
+                        <form action="<?= base_url('user/store') ?>" method="POST" enctype="multipart/form-data">
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="foto" id="inputGroupFile02" placeholder="Upload File">
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 
+                                'is-invalid' : ''; ?>" name="nama" id="nama" placeholder="Nama" autofocus>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('nama'); ?>
+                                </div>
+                                <label>Nama</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <!-- <label>Kelas</label> -->
+                                <!-- <input type="text" class="form-control" placeholder="Kelas"> -->
+                                <select name="kelas" id="kelas" class="form-control" placeholder="Kelas" type="text">
+                                    <?php foreach ($kelas as $item){
+                                        ?>
+                                        <option value="<?= $item['id'] ?>">
+                                            <?= $item['nama_kelas'] ?>
+                                        </option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" <?= ($validation->hasError('npm')) ? 
+                                'is-invalid' : ''; ?>" name="npm" id="npm" placeholder="NPM" autofocus>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('npm'); ?>
+                                </div>
+                                <label>NPM</label>
+                            </div><br>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <select name="kelas" id="kelas">
-                    <?php
-                    foreach ($kelas as $item){
-                    ?>
-                        <option value="<?= $item['id'] ?>">
-                            <?= $item['nama_kelas'] ?>
-                        </option>
-                    <?php
-                    }
-                    ?>
-                </select>
-                <input type="text" name="npm" placeholder="NPM" class="form-control <?= ($validation->hasError('npm')) ?
-                'is-invalid' : ''; ?>" id="npm" autofocus>
-                <div class="invalid-feedback">
-                    <?= $validation->getError('npm') ?>
-                </div>
-                <input type="submit" name="submit" value="Send" />
-            </form>
+            </div>
         </div>
-    </section>
-</body>
-</html>
+    </div>
+</div>
+<?= $this->endSection() ?>
