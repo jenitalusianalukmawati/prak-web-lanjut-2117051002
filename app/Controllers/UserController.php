@@ -36,25 +36,6 @@ class UserController extends BaseController{
         // $kelas = $kelasModel->getKelas();
         $kelas = $this->kelasModel->getKelas();
 
-        //  $kelas = [
-        //     [
-        //         'id' => 1,
-        //         'nama_kelas' => 'A'
-        //     ],
-        //     [
-        //         'id' => 2,
-        //         'nama_kelas' => 'B'
-        //     ],
-        //     [
-        //         'id' => 3,
-        //         'nama_kelas' => 'C'
-        //     ],
-        //     [
-        //         'id' => 4,
-        //         'nama_kelas' => 'D'
-        //     ],
-        //  ];
-
          if (session('validation') != null) {
             $validation = session('validation');
         } else {
@@ -71,6 +52,15 @@ class UserController extends BaseController{
     }
 
     public function store(){
+        $path = 'assets/uploads/img/';
+
+        $foto = $this->request->getFile('foto');
+
+        $name = $foto->getRandomName();
+
+        if ($foto->move($path, $name)){
+            $foto = base_url($path . $name);
+        }
         //dd($this->request->getVar());
 
         // validasi input
@@ -86,9 +76,10 @@ class UserController extends BaseController{
         } 
 
         $this->userModel->saveUser([
-            'nama' => $this->request->getVar('nama'),
-            'npm' => $this->request->getVar('npm'),
-            'id_kelas' => $this->request->getVar('kelas'),
+            'nama'          => $this->request->getVar('nama'),
+            'npm'           => $this->request->getVar('npm'),
+            'id_kelas'      => $this->request->getVar('kelas'),
+            'foto'          => $foto
         ]);
 
         $userModel = new UserModel();
@@ -113,5 +104,16 @@ class UserController extends BaseController{
 
         // return view('profile', $data_new);
         return redirect()->to('/user');
+    }
+
+    public function show($id){
+        $user = $this->userModel->getUser($id);
+
+        $data = [
+            'title' => 'Profile',
+            'user' => $user,
+        ];
+
+        return view('profile', $data);
     }
 }
