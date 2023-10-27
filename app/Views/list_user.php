@@ -31,9 +31,14 @@
                             <button type="button" class="btn btn-primary"><i class="bi bi-info-circle"></i>
                                 <a href="<?= base_url('user/' . $user['id']) ?>">Detail</a>
                             </button>
-                            <button type="button" class="btn btn-success"><i class="bi bi-pencil-square" style='color:#ffff'></i> Edit</button>
-                            <button type="button" class="btn btn-danger"><i class="bi bi-trash3" style='color:#ffff'></i> Delete</button>
-                            </td>
+                            <button type="button" class="btn btn-success"><i class="bi bi-pencil-square" style='color:#ffff'></i>
+                                <a href="<?= base_url('user/' . $user['id'] . '/edit') ?>">Edit</a>
+                            </button>
+                            <form action="<?=  base_url('user/' . $user['id']) ?>" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <?= csrf_field() ?>
+                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash3" style='color:#ffff'>Delete</i></button>
+                            </form>
                         </tr>
                         <?php
                         }
