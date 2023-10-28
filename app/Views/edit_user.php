@@ -3,15 +3,15 @@
 <div class="bg">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-5">
+            <div class="edit-user">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Create User</h3></div>
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit User</h3></div>
                     <div class="card-body">
                         <form action="<?= base_url('user/' . $user['id']) ?>" method="POST" enctype="multipart/form-data">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="PUT">
                             <div class="input-group mb-3">
-                                <img src="<?= $user['foto'] ?? '<default-foto>' ?>">
+                                <img src="<?= $user['foto'] ?? '<default-foto>'?>" class="edit_foto">
                                 <input type="file" class="form-control" name="foto" id="inputGroupFile02" placeholder="Upload File">
                             </div>
                             <div class="form-floating mb-3">
